@@ -1,32 +1,6 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "./api/index.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.json",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "*./node_modules",
-      "use": "@vercel/node"
-    }
-  ],
-  "buildCommand": "node ./api/index.js",
+  "installCommand": "npm install",
   "routes": [
     {
       "src": "/",
