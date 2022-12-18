@@ -22,7 +22,7 @@
       "use": "@vercel/node"
     }
   ],
-  "buildCommand": "node index.js",
+  "buildCommand": "node ./api/index.js",
   "routes": [
     {
       "src": "/",
