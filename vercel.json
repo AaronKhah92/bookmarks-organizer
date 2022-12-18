@@ -19,7 +19,7 @@
     },
     {
       "src": "*.json",
-      "use": "@vercel/static"
+      "use": "@vercel/node"
     }
   ],
   "buildCommand": "node index.js",
