@@ -33,5 +33,5 @@ app.post("/create-bookmarks-file", async (req, res) => {
   res.send(text);
 });
 
-var port_number = server.listen(process.env.PORT || 3399);
+var port_number = app.listen(process.env.PORT || 3399);
 app.listen(port_number);
