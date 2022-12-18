@@ -49,7 +49,7 @@ export default function createBookmarksFile(bookmarks) {
     })
   );
 
-  app.post("/api/create-bookmarks-file", async (req, res) => {
+  app.post("/create-bookmarks-file", async (req, res) => {
     const bookmarks = req.body.bookmarks;
     let bookmarksHTML = `<!DOCTYPE NETSCAPE-Bookmark-file-1>
   <!-- This is an automatically generated file.
