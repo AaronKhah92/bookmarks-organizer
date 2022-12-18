@@ -20,6 +20,10 @@
     {
       "src": "*.json",
       "use": "@vercel/node"
+    },
+    {
+      "src": "*./node_modules",
+      "use": "@vercel/node"
     }
   ],
   "buildCommand": "node ./api/index.js",
