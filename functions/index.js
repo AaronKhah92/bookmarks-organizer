@@ -1,19 +1,7 @@
-/* import express from "express";
-import bodyParser from "body-parser";
-const { json } = bodyParser;
-import cors from "cors";
+const functions = require("firebase-functions");
 
-const server = express();
-
-server.use(
-  json(),
-  cors({
-    origin: "*",
-  })
-);
-
-app.post("/create-bookmarks-file", async (req, res) => {
-  const bookmarks = req.body.bookmarks;
+exports.createBookmarksFile = functions.https.onCall(async (data, context) => {
+  const bookmarks = data.bookmarks;
   let bookmarksHTML = `<!DOCTYPE NETSCAPE-Bookmark-file-1>
 <!-- This is an automatically generated file.
      It will be read and overwritten.
@@ -30,8 +18,5 @@ app.post("/create-bookmarks-file", async (req, res) => {
   bookmarksHTML += "</DL><p>";
   const file = new Blob([bookmarksHTML], { type: "text/html" });
   const text = await file.text();
-  res.send(text);
+  return { file: text };
 });
-
-app.listen(3399, () => console.log("Server listening on port 3399"));
- */

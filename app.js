@@ -1,4 +1,12 @@
+import * as firebase from "firebase/app";
+import "firebase/functions";
 import { load } from "cheerio";
+firebase.initializeApp({
+  apiKey: "AIzaSyCRuPHO0-S4Gc6pXeFF4VmCHbH6EtXwZyM",
+  authDomain: "bookie-sorter.firebaseapp.com",
+  projectId: "bookie-sorter",
+});
+
 const form = document.getElementById("bookmark-form");
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -28,20 +36,16 @@ form.addEventListener("submit", async (event) => {
     title.includes(searchTerm)
   );
 
-  // Send filtered bookmarks to server to create new bookmarks file
-  const response = await fetch(
-    `${window.location.origin}:3399/create-bookmarks-file`,
-    {
-      method: "POST",
-      body: JSON.stringify({ bookmarks: filteredBookmarks }),
-      headers: { "Content-Type": "application/json" },
-    }
-  );
+  // Call createBookmarksFile function on the server
+  const createBookmarksFile = firebase
+    .functions()
+    .httpsCallable("createBookmarksFile");
+  const response = await createBookmarksFile({ bookmarks: filteredBookmarks });
 
   console.log(response);
 
   // Download new bookmarks file
-  const file = await response.blob();
+  const file = await response.data.file;
   const url = window.URL.createObjectURL(file);
   const a = document.createElement("a");
   a.style.display = "none";
